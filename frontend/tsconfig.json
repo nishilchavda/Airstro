@@ -5,6 +5,9 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    
+    /* Add this line to silence the warning */
+    "ignoreDeprecations": "6.0", 
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -14,14 +17,14 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting - on désactive ou on desserre pour ne pas tout bloquer */
+    /* Linting */
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": false,
     "noImplicitAny": false,
 
-    /* Aliases */
+    /* Aliases - Keep these as they are */
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

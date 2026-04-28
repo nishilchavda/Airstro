@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://airstro.onrender.com";
 
 export async function getMyBookings(token) {
   const res = await fetch(`${API_BASE_URL}/api/bookings/my`, {
