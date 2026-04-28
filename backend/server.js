@@ -12,7 +12,9 @@ const bookingRoutes = require("./routes/bookings");
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+const allowedOrigins = ["http://localhost:5173", process.env.FRONTEND_URL];
+
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
@@ -20,12 +22,15 @@ app.use("/api/flights", flightRoutes);
 app.use("/api/admin/flights", adminFlightRoutes);
 app.use("/api/bookings", bookingRoutes);
 
+const PORT = process.env.PORT || 10000;
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
-    app.listen(process.env.PORT || 5000, () => {
-      console.log("Server running on port", process.env.PORT || 5000);
-    });
   })
   .catch((err) => console.error("MongoDB connection error:", err));
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Server is running on port ${PORT}`);
+});
