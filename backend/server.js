@@ -23,13 +23,15 @@ app.use("/api/flights", flightRoutes);
 app.use("/api/admin/flights", adminFlightRoutes);
 app.use("/api/bookings", bookingRoutes);
 
+// Serve the frontend build
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("/*", (req, res) => {
+  // Use a Regex instead of a string to avoid PathError
+  app.get(/.*/, (req, res) => {
     res.sendFile(path.resolve(__dirname, "../frontend/dist", "index.html"));
   });
-}
+}x
 
 const PORT = process.env.PORT || 10000;
 
